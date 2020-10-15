@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':DashboardManager', ':LocalStorageRepository'
 rootProject.name = "CookieDashboard"
