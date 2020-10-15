@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.dashboardmanager.manager.DashboardManager
 import com.android.dashboardmanager.model.DashboardSettings
+import com.android.dashboardmanager.model.Mode
 
 class MainViewModel(private val dashboardManager: DashboardManager) : ViewModel() {
 
@@ -14,10 +15,17 @@ class MainViewModel(private val dashboardManager: DashboardManager) : ViewModel(
     private lateinit var currentSettings: DashboardSettings
 
     fun loadSettings() {
-        _saveLiveData.value = dashboardManager.loadSettings()
+        dashboardManager.loadSettings().let {
+            currentSettings = it
+            _saveLiveData.value = it
+        }
     }
 
-    fun saveSettings(settings: DashboardSettings) {
+    fun updateUsername(newUsername: String) = saveSettings(DashboardSettings(currentSettings.mode, newUsername))
+
+    fun updateMode(mode: Mode) = saveSettings(DashboardSettings(mode, currentSettings.username))
+
+    private fun saveSettings(settings: DashboardSettings) {
         dashboardManager.saveSettings(settings)
         loadSettings()
     }

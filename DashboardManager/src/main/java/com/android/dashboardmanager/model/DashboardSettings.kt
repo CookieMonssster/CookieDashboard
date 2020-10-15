@@ -5,7 +5,7 @@ import com.android.localstoragemanager.model.SettingsData
 
 data class DashboardSettings(
     val mode: Mode = Mode.NORMAL,
-    val userName: String = String.Empty,
+    val username: String = String.Empty,
 ) {
-    fun toSettingsData() = SettingsData(fromMode(mode), userName)
+    fun toSettingsData() = SettingsData(fromMode(mode), username)
 }

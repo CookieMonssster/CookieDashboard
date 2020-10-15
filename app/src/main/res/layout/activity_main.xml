@@ -31,7 +31,7 @@
         android:text="@string/settings"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/settingsButton"
+        android:id="@+id/changeUsernameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_normal"

@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.android.cookiedashboard.R
-import com.android.dashboardmanager.model.DashboardSettings
 import com.android.dashboardmanager.model.Mode
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -20,7 +19,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         viewModel.saveLiveData.observe(this, Observer {
-            username.text = "Hello ${it.userName}!"
+            username.text = "Hello ${it.username}!"
+            modeSwitch.isChecked = it.mode == Mode.DARK
             ContextCompat.getColor(this, getModeTextColor(it.mode)).let { color ->
                 username.setTextColor(color)
                 settingsLabel.setTextColor(color)
@@ -31,14 +31,14 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.loadSettings()
 
-        settingsButton.setOnClickListener {
-            viewModel.saveSettings(
-                DashboardSettings(
-                    getMode(),
-                    generateUsername()
-                )
-            )
-            Toast.makeText(this, "Settings was changed", Toast.LENGTH_SHORT).show()
+        changeUsernameButton.setOnClickListener {
+            viewModel.updateUsername(generateUsername())
+            Toast.makeText(this, "Username was changed!", Toast.LENGTH_SHORT).show()
+        }
+
+        modeSwitch.setOnCheckedChangeListener { _, checked ->
+            viewModel.updateMode(getMode(checked))
+            Toast.makeText(this, "Mode was changed!", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -54,5 +54,5 @@ class MainActivity : AppCompatActivity() {
 
     private fun generateUsername() = listOf("Rysiek", "Cezariusz", "Some User", "Some different user", "Klop").shuffled()[0]
 
-    private fun getMode() = if(modeSwitch.isChecked) Mode.NORMAL else Mode.DARK
+    private fun getMode(checked: Boolean) = if (checked) Mode.DARK else Mode.NORMAL
 }
