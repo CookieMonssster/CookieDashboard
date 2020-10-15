@@ -1,5 +1,8 @@
 package com.android.dashboardmanager.manager
 
+import com.android.dashboardmanager.model.DashboardSettings
+
 interface DashboardManager {
-    fun initIt()
+    fun loadSettings(): DashboardSettings
+    fun saveSettings(settings: DashboardSettings)
 }

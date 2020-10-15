@@ -1,13 +1,24 @@
 package com.android.cookiedashboard.main
 
-import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.dashboardmanager.manager.DashboardManager
+import com.android.dashboardmanager.model.DashboardSettings
 
 class MainViewModel(private val dashboardManager: DashboardManager) : ViewModel() {
 
-    fun initIt() {
-        Log.e("klop", "${this.javaClass.name} init")
-        dashboardManager.initIt()
+    private val _saveLiveData = MutableLiveData<DashboardSettings>()
+    val saveLiveData: LiveData<DashboardSettings> get() = _saveLiveData
+
+    private lateinit var currentSettings: DashboardSettings
+
+    fun loadSettings() {
+        _saveLiveData.value = dashboardManager.loadSettings()
+    }
+
+    fun saveSettings(settings: DashboardSettings) {
+        dashboardManager.saveSettings(settings)
+        loadSettings()
     }
 }

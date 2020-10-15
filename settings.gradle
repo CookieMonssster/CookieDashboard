@@ -1,2 +1,2 @@
-include ':app', ':DashboardManager', ':LocalStorageRepository'
+include ':app', ':DashboardManager', ':LocalStorageRepository', ':KotlinUtils'
 rootProject.name = "CookieDashboard"
