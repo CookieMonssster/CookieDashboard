@@ -1,14 +1,14 @@
 package com.android.cookiedashboard.main
 
 import android.os.Bundle
-import android.widget.Toast
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import com.android.cookiedashboard.R
 import com.android.dashboardmanager.model.Mode
+import com.android.localstoragemanager.model.Profile
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.lang.StringBuilder
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,28 +18,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel.saveLiveData.observe(this, Observer {
-            username.text = "Hello ${it.username}!"
-            modeSwitch.isChecked = it.mode == Mode.DARK
-            ContextCompat.getColor(this, getModeTextColor(it.mode)).let { color ->
-                username.setTextColor(color)
-                settingsLabel.setTextColor(color)
-                modeSwitch.setTextColor(color)
-            }
-            container.setBackgroundColor(ContextCompat.getColor(this, getModeColor(it.mode)))
+
+        viewModel.allSettings.observe(this, { profiles ->
+            profile_list.text = listProfiles(profiles)
         })
 
-        viewModel.loadSettings()
+        button.setOnClickListener { addProfile() }
+    }
 
-        changeUsernameButton.setOnClickListener {
-            viewModel.updateUsername(generateUsername())
-            Toast.makeText(this, "Username was changed!", Toast.LENGTH_SHORT).show()
+    private fun listProfiles(profiles: List<Profile>): String {
+        val sb = StringBuilder()
+        profiles.forEach {
+            sb.append(it.username + "\n")
         }
+        return sb.toString()
+    }
 
-        modeSwitch.setOnCheckedChangeListener { _, checked ->
-            viewModel.updateMode(getMode(checked))
-            Toast.makeText(this, "Mode was changed!", Toast.LENGTH_SHORT).show()
-        }
+    private fun addProfile() {
+        viewModel.insert(Profile(1, generateUsername()))
     }
 
     private fun getModeColor(mode: Mode): Int = when (mode) {
