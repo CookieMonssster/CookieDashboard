@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.android.cookiedashboard.R
+import com.android.cookiedashboard.main.MainActivity
+import com.android.uiextension.launchActivity
 import kotlinx.android.synthetic.main.profile_list_row.view.*
 
 class ProfileAdapter(private val listener: ProfileActivityListener) : RecyclerView.Adapter<ProfileViewHolder>() {
@@ -22,10 +24,13 @@ class ProfileAdapter(private val listener: ProfileActivityListener) : RecyclerVi
         holder.setData(profiles[position])
     }
 
-    fun updateProfileList(profiles: List<String>) {
-        this.profiles = profiles.map { ProfileCard(it, true) } +
-                ProfileCard(listener.getContext().getString(R.string.add), false)
+    fun updateProfileList(profiles: List<ProfileCard>) {
+        this.profiles = profiles + ProfileCard(WRONG_UID, listener.getContext().getString(R.string.add), false)
         notifyDataSetChanged()
+    }
+
+    companion object {
+        private const val WRONG_UID = -1
     }
 }
 
@@ -50,7 +55,9 @@ class ProfileViewHolder(
         else R.drawable.ic_add
 
     private fun showProfileDetails(context: Context, profileCard: ProfileCard) {
-        Toast.makeText(context, "Showing profile: ${profileCard.name}", Toast.LENGTH_SHORT).show()
+        context.launchActivity<MainActivity> {
+            putExtra(ProfileCard.PROFILE_ID, ProfileCard.WRONG_ID)
+        }
     }
 }
 

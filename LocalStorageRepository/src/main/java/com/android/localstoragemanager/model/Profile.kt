@@ -13,5 +13,5 @@ data class Profile(
     @ColumnInfo(name = "username")
     val username: String = String.Empty,
     @PrimaryKey(autoGenerate = true)
-    val uid: Int = 0
+    val id: Int = 0
 )
