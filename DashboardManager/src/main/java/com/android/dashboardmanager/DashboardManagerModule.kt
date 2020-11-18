@@ -7,5 +7,5 @@ fun addDashboardManagerModule() = createDashboardManagerModules()
     .plus(createLocalStorageManagerModule())
 
 private fun createDashboardManagerModules() = module {
-
+    //factory<DashboardManager> { DashboardManagerImpl(get()) }
 }

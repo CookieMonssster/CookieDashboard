@@ -7,17 +7,16 @@
     android:padding="@dimen/margin_normal"
     tools:context=".main.MainActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:background="@color/dark_mode_text_color"
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <TextView
         android:id="@+id/profile_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|center" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Some!"
-        android:layout_gravity="bottom|center" />
 
 </FrameLayout>
