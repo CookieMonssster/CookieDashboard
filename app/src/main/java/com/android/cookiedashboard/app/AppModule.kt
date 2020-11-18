@@ -1,7 +1,7 @@
 package com.android.cookiedashboard.app
 
 import com.android.cookiedashboard.profile.ProfileViewModel
-import com.android.dashboardmanager.addDashboardManagerModule
+import com.android.localstoragemanager.createLocalStorageManagerModule
 import com.android.localstoragemanager.dao.ProfileDatabase
 import com.android.localstoragemanager.repository.ProfileRepository
 import kotlinx.coroutines.CoroutineScope
@@ -12,12 +12,11 @@ import org.koin.core.module.Module
 import org.koin.dsl.module
 
 fun createAppModule() = mutableListOf<Module>().apply {
-    addAll(addDashboardManagerModule())
+    add(createLocalStorageManagerModule())
     add(appModules)
 }
 
 private val appModules = module {
-    single { ProfileDatabase.getDatabase(androidContext(), CoroutineScope(SupervisorJob())).profileDao() }
-    single { ProfileRepository(get()) }
+
     viewModel { ProfileViewModel(get()) }
 }

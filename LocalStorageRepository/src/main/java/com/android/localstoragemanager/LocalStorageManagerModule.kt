@@ -1,11 +1,15 @@
 package com.android.localstoragemanager
 
+import com.android.localstoragemanager.dao.ProfileDatabase
+import com.android.localstoragemanager.repository.ProfileRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
 fun createLocalStorageManagerModule() = createLocalStorageManagerModules()
 
 private fun createLocalStorageManagerModules() = module {
-
+    single { ProfileDatabase.getDatabase(androidContext(), CoroutineScope(SupervisorJob())).profileDao() }
+    single { ProfileRepository(get()) }
 }
-
-private const val LocalStorage = "LocalStorage"
