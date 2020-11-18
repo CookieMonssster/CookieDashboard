@@ -1,4 +1,4 @@
-package com.android.cookiedashboard.main.adapter
+package com.android.cookiedashboard.profile.adapter
 
 data class ProfileCard(
     val name: String,

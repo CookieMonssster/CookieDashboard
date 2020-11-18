@@ -1,4 +1,4 @@
-package com.android.cookiedashboard.main
+package com.android.cookiedashboard.profile
 
 
 import androidx.lifecycle.ViewModel
@@ -9,7 +9,7 @@ import com.android.localstoragemanager.repository.ProfileRepository
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val repository: ProfileRepository) : ViewModel() {
+class ProfileViewModel(private val repository: ProfileRepository) : ViewModel() {
 
 
     val allSettings = repository.allProfiles.map { it.map { it.username } }.asLiveData()

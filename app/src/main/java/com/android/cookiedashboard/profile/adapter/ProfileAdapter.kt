@@ -1,4 +1,4 @@
-package com.android.cookiedashboard.main.adapter
+package com.android.cookiedashboard.profile.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.cookiedashboard.R
 import kotlinx.android.synthetic.main.profile_list_row.view.*
 
-class ProfileAdapter(private val listener: MainActivityListener) : RecyclerView.Adapter<ProfileViewHolder>() {
+class ProfileAdapter(private val listener: ProfileActivityListener) : RecyclerView.Adapter<ProfileViewHolder>() {
 
     private var profiles = listOf<ProfileCard>()
 
@@ -31,7 +31,7 @@ class ProfileAdapter(private val listener: MainActivityListener) : RecyclerView.
 
 class ProfileViewHolder(
     private val view: View,
-    private val listener: MainActivityListener
+    private val listener: ProfileActivityListener
 ) : RecyclerView.ViewHolder(view) {
 
     fun setData(profileCard: ProfileCard) {
@@ -54,7 +54,7 @@ class ProfileViewHolder(
     }
 }
 
-interface MainActivityListener {
+interface ProfileActivityListener {
     fun addProfile()
     fun getContext(): Context
 }
