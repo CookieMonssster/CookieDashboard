@@ -4,19 +4,12 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark_mode_color"
     android:padding="@dimen/margin_normal"
     tools:context=".main.MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:background="@color/dark_mode_text_color"
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-    <TextView
-        android:id="@+id/profile_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|center" />
-
 </FrameLayout>

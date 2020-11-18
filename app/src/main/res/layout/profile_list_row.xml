@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:padding="@dimen/margin_normal">
 
     <ImageView
@@ -26,6 +26,7 @@
         app:layout_constraintRight_toRightOf="@id/profile_image"
         app:layout_constraintTop_toBottomOf="@id/profile_image"
         android:layout_marginTop="@dimen/margin_xsmall"
+        android:textColor="@color/dark_mode_text_color"
         tools:text="Some Profile"
         android:textStyle="bold"
         android:layout_gravity="center"/>

@@ -1,7 +1,10 @@
 package com.android.cookiedashboard.main
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.Window
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,19 +24,20 @@ class MainActivity : AppCompatActivity(), MainActivityListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         setContentView(R.layout.activity_main)
         setupRecycleView()
 
         viewModel.allSettings.observe(this, { profiles ->
             profileAdapter.updateProfileList(profiles)
         })
-
-        //button.setOnClickListener { addProfile() }
     }
 
     override fun addProfile() {
         viewModel.insert(Profile(1, generateUsername()))
     }
+
+    override fun getContext(): Context = this
 
     private fun setupRecycleView() {
         recyclerView.apply {
@@ -41,13 +45,6 @@ class MainActivity : AppCompatActivity(), MainActivityListener {
             adapter = profileAdapter
         }
     }
-
-    private fun listProfiles(profiles: List<String>): String =
-        StringBuilder().apply {
-            profiles.forEach {
-                append(it + "\n")
-            }
-        }.toString()
 
     private fun getModeColor(mode: Mode): Int = when (mode) {
         Mode.DARK -> R.color.dark_mode_color
