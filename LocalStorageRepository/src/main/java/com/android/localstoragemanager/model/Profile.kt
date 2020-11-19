@@ -5,6 +5,16 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.android.kotlinutils.Empty
 
+/**
+ *
+ * [Room]
+ *
+ * Creating entities for Room database
+ *
+ * More info: https://developer.android.com/codelabs/android-room-with-a-view-kotlin#4
+ *
+ */
+
 @Entity(tableName = "profile_table")
 data class Profile(
     @ColumnInfo(name = "mode")

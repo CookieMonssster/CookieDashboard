@@ -8,6 +8,8 @@ class CookieDashboardApp: Application()  {
 
     override fun onCreate() {
         super.onCreate()
+
+        // [Koin]
         startKoin {
             androidContext(this@CookieDashboardApp)
             modules(createAppModule())

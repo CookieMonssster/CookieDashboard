@@ -3,8 +3,18 @@ package com.android.localstoragemanager.dao
 import androidx.room.TypeConverter
 import com.android.localstoragemanager.model.Mode
 
-class Converters {
+/**
+ *
+ * [Room]
+ *
+ * Converters class. Room provides functionality for converting between primitive and boxed types,
+ * but doesn't allow for object references between entities.
+ *
+ * More info: https://developer.android.com/training/data-storage/room/referencing-data
+ *
+ */
 
+class Converters {
     @TypeConverter
     fun fromMode(mode: Mode): Int =
         when(mode) {

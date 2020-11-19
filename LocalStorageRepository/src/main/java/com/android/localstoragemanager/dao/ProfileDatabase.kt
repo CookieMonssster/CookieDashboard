@@ -11,6 +11,15 @@ import com.android.localstoragemanager.model.Profile
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
+/**
+ *
+ * [Room]
+ *
+ * Add a Room database
+ *
+ * More info: https://developer.android.com/codelabs/android-room-with-a-view-kotlin#7
+ *
+ */
 @Database(entities = [Profile::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class ProfileDatabase : RoomDatabase() {
@@ -30,6 +39,7 @@ abstract class ProfileDatabase : RoomDatabase() {
 
         suspend fun populateDatabase(profileDao: ProfileDao) {
             profileDao.deleteAll()
+            //TODO remove default values
             profileDao.insert(Profile(Mode.DARK, "Rysiek"))
             profileDao.insert(Profile(Mode.NORMAL, "przestań!"))
         }

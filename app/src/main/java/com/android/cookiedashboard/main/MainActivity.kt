@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.android.cookiedashboard.R
 import com.android.cookiedashboard.profile.adapter.ProfileCard
+import com.android.kotlinutils.InvalidValue
 import com.android.localstoragemanager.model.Mode
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -13,8 +14,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModel()
-
-    private var id: Int = -1
+    private var id: Int = Int.InvalidValue
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
