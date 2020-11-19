@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class MainViewModel(private val repository: ProfileRepository) : ViewModel() {
 
-    private lateinit var profile: Profile
+    private var profile: Profile? = null
 
     fun loadProfile(id: Int) =
         repository.load(id).map {
@@ -20,8 +20,18 @@ class MainViewModel(private val repository: ProfileRepository) : ViewModel() {
         }.asLiveData()
 
     fun updateProfileMode(mode: Mode) {
-        viewModelScope.launch {
-            repository.update(Profile(mode, profile.username, profile.id))
+        profile?.let {
+            viewModelScope.launch {
+                repository.update(Profile(mode, it.username, it.id))
+            }
+        }
+    }
+
+    fun removeProfile() {
+        profile?.let {
+            viewModelScope.launch {
+                repository.remove(it.id)
+            }
         }
     }
 }

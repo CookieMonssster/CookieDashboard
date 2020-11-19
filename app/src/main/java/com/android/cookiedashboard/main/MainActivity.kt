@@ -24,14 +24,21 @@ class MainActivity : AppCompatActivity() {
         id = intent.getIntExtra(ProfileCard.PROFILE_ID, ProfileCard.WRONG_ID)
 
         viewModel.loadProfile(id).observe(this, {
-            profile_name.text = it.username
-            profile_name.setTextColor(ContextCompat.getColor(this, getTextColor(it.mode)))
-            mode_switch.isChecked = it.mode == Mode.DARK
-            container.setBackgroundColor(ContextCompat.getColor(this, getBackgroundColor(it.mode)))
+            it?.let {
+                profile_name.text = it.username
+                profile_name.setTextColor(ContextCompat.getColor(this, getTextColor(it.mode)))
+                mode_switch.isChecked = it.mode == Mode.DARK
+                container.setBackgroundColor(ContextCompat.getColor(this, getBackgroundColor(it.mode)))
+            }
         })
 
         mode_switch.setOnCheckedChangeListener { _, isChecked ->
             viewModel.updateProfileMode(getModeFromSwitch(isChecked))
+        }
+
+        remove_button.setOnClickListener {
+            viewModel.removeProfile()
+            finish()
         }
     }
 
