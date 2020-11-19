@@ -13,13 +13,13 @@ import kotlinx.coroutines.launch
 class ProfileViewModel(private val repository: ProfileRepository) : ViewModel() {
 
 
-    val allSettings = repository.allProfiles.map {
+    val allProfiles = repository.allProfiles.map {
         it.map {
             ProfileCard(it.id, it.username, true)
         }
     }.asLiveData()
 
-    fun insert(profile: Profile) = viewModelScope.launch {
+    fun saveProfile(profile: Profile) = viewModelScope.launch {
         repository.insert(profile)
     }
 }

@@ -23,13 +23,13 @@ class ProfileActivity : AppCompatActivity(), ProfileActivityListener {
         setContentView(R.layout.profile_activity_layout)
         setupRecycleView()
 
-        viewModel.allSettings.observe(this, { profiles ->
+        viewModel.allProfiles.observe(this, { profiles ->
             profileAdapter.updateProfileList(profiles)
         })
     }
 
     override fun addProfile() {
-        viewModel.insert(Profile(Mode.NORMAL, generateUsername()))
+        viewModel.saveProfile(Profile(Mode.NORMAL, generateUsername()))
     }
 
     override fun getContext(): Context = this
