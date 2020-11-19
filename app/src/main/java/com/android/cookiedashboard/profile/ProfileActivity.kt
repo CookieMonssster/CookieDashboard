@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.android.cookiedashboard.R
 import com.android.cookiedashboard.profile.adapter.ProfileActivityListener
 import com.android.cookiedashboard.profile.adapter.ProfileAdapter
+import com.android.localstoragemanager.model.Mode
 import com.android.localstoragemanager.model.Profile
 import kotlinx.android.synthetic.main.profile_activity_layout.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -28,7 +29,7 @@ class ProfileActivity : AppCompatActivity(), ProfileActivityListener {
     }
 
     override fun addProfile() {
-        viewModel.insert(Profile(1, generateUsername()))
+        viewModel.insert(Profile(Mode.NORMAL, generateUsername()))
     }
 
     override fun getContext(): Context = this

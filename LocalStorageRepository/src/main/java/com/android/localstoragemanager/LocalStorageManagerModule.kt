@@ -7,9 +7,7 @@ import kotlinx.coroutines.SupervisorJob
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
-fun createLocalStorageManagerModule() = createLocalStorageManagerModules()
-
-private fun createLocalStorageManagerModules() = module {
+fun createLocalStorageManagerModule() = module {
     single { ProfileDatabase.getDatabase(androidContext(), CoroutineScope(SupervisorJob())).profileDao() }
     single { ProfileRepository(get()) }
 }

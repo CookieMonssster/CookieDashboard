@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.android.cookiedashboard.R
 import com.android.cookiedashboard.main.MainActivity
@@ -56,7 +55,7 @@ class ProfileViewHolder(
 
     private fun showProfileDetails(context: Context, profileCard: ProfileCard) {
         context.launchActivity<MainActivity> {
-            putExtra(ProfileCard.PROFILE_ID, ProfileCard.WRONG_ID)
+            putExtra(ProfileCard.PROFILE_ID, profileCard.id)
         }
     }
 }

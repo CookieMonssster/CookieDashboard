@@ -1,16 +1,18 @@
 package com.android.localstoragemanager.dao
 
 import android.content.Context
-import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.android.localstoragemanager.model.Mode
 import com.android.localstoragemanager.model.Profile
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Database(entities = [Profile::class], version = 1)
+@TypeConverters(Converters::class)
 abstract class ProfileDatabase : RoomDatabase() {
 
     abstract fun profileDao(): ProfileDao
@@ -28,8 +30,8 @@ abstract class ProfileDatabase : RoomDatabase() {
 
         suspend fun populateDatabase(profileDao: ProfileDao) {
             profileDao.deleteAll()
-            profileDao.insert(Profile(3, "Rysiek"))
-            profileDao.insert(Profile(1, "przestań!"))
+            profileDao.insert(Profile(Mode.DARK, "Rysiek"))
+            profileDao.insert(Profile(Mode.NORMAL, "przestań!"))
         }
     }
 

@@ -1,10 +1,6 @@
 package com.android.localstoragemanager.dao
 
-import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.android.localstoragemanager.model.Profile
 import kotlinx.coroutines.flow.Flow
 
@@ -13,8 +9,14 @@ interface ProfileDao {
     @Query("SELECT * FROM profile_table")
     fun getSettings(): Flow<List<Profile>>
 
+    @Query("SELECT * FROM profile_table WHERE id == :profileId")
+    fun load(profileId: Int): Flow<Profile>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(profile: Profile)
+
+    @Update
+    suspend fun update(profile: Profile)
 
     @Query("DELETE FROM profile_table")
     suspend fun deleteAll()
