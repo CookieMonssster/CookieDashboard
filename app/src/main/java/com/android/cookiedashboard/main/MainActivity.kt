@@ -1,19 +1,21 @@
 package com.android.cookiedashboard.main
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.android.cookiedashboard.R
+import com.android.cookiedashboard.databinding.ActivityMainBinding
 import com.android.cookiedashboard.profile.adapter.ProfileCard
 import com.android.kotlinutils.InvalidValue
 import com.android.localstoragemanager.model.Mode
-import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModel()
+    private lateinit var binding: ActivityMainBinding
     private var id: Int = Int.InvalidValue
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,24 +23,39 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         supportActionBar?.hide()
 
+        // view binding
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         id = intent.getIntExtra(ProfileCard.PROFILE_ID, ProfileCard.WRONG_ID)
 
         viewModel.loadProfile(id).observe(this, {
             it?.let {
-                profile_name.text = it.username
-                profile_name.setTextColor(ContextCompat.getColor(this, getTextColor(it.mode)))
-                mode_switch.isChecked = it.mode == Mode.DARK
-                container.setBackgroundColor(ContextCompat.getColor(this, getBackgroundColor(it.mode)))
+                binding.apply {
+                    profileName.text = it.username
+                    profileName.setTextColor(ContextCompat.getColor(root.context, getTextColor(it.mode)))
+                    modeSwitch.isChecked = it.mode == Mode.DARK
+                    container.setBackgroundColor(ContextCompat.getColor(root.context, getBackgroundColor(it.mode)))
+                }
             }
         })
+        prepareView()
+    }
 
-        mode_switch.setOnCheckedChangeListener { _, isChecked ->
-            viewModel.updateProfileMode(getModeFromSwitch(isChecked))
-        }
+    private fun prepareView() {
+        // view binding
+        binding.apply {
+            menuSix.prepareSixthElement(getString(R.string.settings), R.drawable.ic_settings) {
+                Toast.makeText(root.context, "Settings screen should open N O W !", Toast.LENGTH_SHORT).show()
+            }
+            modeSwitch.setOnCheckedChangeListener { _, isChecked ->
+                viewModel.updateProfileMode(getModeFromSwitch(isChecked))
+            }
 
-        remove_button.setOnClickListener {
-            viewModel.removeProfile()
-            finish()
+            removeButton.setOnClickListener {
+                viewModel.removeProfile()
+                finish()
+            }
         }
     }
 
@@ -47,13 +64,13 @@ class MainActivity : AppCompatActivity() {
         else Mode.NORMAL
 
     private fun getBackgroundColor(mode: Mode) =
-        when(mode) {
+        when (mode) {
             Mode.NORMAL -> R.color.normal_mode_color
             Mode.DARK -> R.color.dark_mode_color
         }
 
     private fun getTextColor(mode: Mode) =
-        when(mode) {
+        when (mode) {
             Mode.NORMAL -> R.color.normal_mode_text_color
             Mode.DARK -> R.color.dark_mode_text_color
         }

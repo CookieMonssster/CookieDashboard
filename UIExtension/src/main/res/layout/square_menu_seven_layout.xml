@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.33" />
+
+    <com.android.widget.square.SquareMenuElement
+        android:id="@+id/first"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/square_menu_element_background"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.android.widget.square.SquareMenuElement
+        android:id="@+id/second"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/square_menu_element_background"
+        app:layout_constraintBottom_toBottomOf="@id/first"
+        app:layout_constraintLeft_toRightOf="@id/guideline"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.android.widget.square.SquareMenuElement
+        android:id="@+id/third"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/square_menu_element_background"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/first" />
+
+    <com.android.widget.square.SquareMenuElement
+        android:id="@+id/fourth"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/square_menu_element_background"
+        app:layout_constraintBottom_toBottomOf="@id/third"
+        app:layout_constraintLeft_toLeftOf="@id/guideline"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/second" />
+
+    <com.android.widget.square.SquareMenuElement
+        android:id="@+id/fifth"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/square_menu_element_background"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/third" />
+
+    <com.android.widget.square.SquareMenuElement
+        android:id="@+id/sixth"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/square_menu_element_background"
+        app:layout_constraintBottom_toBottomOf="@id/fifth"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintLeft_toRightOf="@id/fifth"
+        app:layout_constraintTop_toBottomOf="@id/fourth" />
+
+    <com.android.widget.square.SquareMenuElement
+        android:id="@+id/seventh"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/square_menu_element_background"
+        app:layout_constraintBottom_toBottomOf="@id/sixth"
+        app:layout_constraintLeft_toRightOf="@id/sixth"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fourth" />
+</merge>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- tools:viewBindingIgnore  -> view binding default by false. Set true if you don't want to generate view binding classes for this layout -->
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:viewBindingIgnore="false"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.33" />
+
+    <com.android.widget.square.SquareMenuElement
+        android:id="@+id/first"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/square_menu_element_background"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintDimensionRatio="1:1" />
+
+    <com.android.widget.square.SquareMenuElement
+        android:id="@+id/second"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/square_menu_element_background"
+        app:layout_constraintLeft_toLeftOf="@id/guideline"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/third" />
+
+    <com.android.widget.square.SquareMenuElement
+        android:id="@+id/third"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/square_menu_element_background"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/first"
+        app:layout_constraintDimensionRatio="1:1" />
+
+    <com.android.widget.square.SquareMenuElement
+        android:id="@+id/fourth"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/square_menu_element_background"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/guideline"
+        app:layout_constraintTop_toBottomOf="@id/third"
+        app:layout_constraintDimensionRatio="1:1" />
+
+    <com.android.widget.square.SquareMenuElement
+        android:id="@+id/fifth"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/square_menu_element_background"
+        app:layout_constraintLeft_toRightOf="@id/fourth"
+        app:layout_constraintTop_toBottomOf="@id/third"
+        app:layout_constraintBottom_toBottomOf="@id/fourth"
+        app:layout_constraintDimensionRatio="1:1" />
+
+    <com.android.widget.square.SquareMenuElement
+        android:id="@+id/sixth"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/square_menu_element_background"
+        app:layout_constraintLeft_toRightOf="@id/fifth"
+        app:layout_constraintTop_toBottomOf="@id/third"
+        app:layout_constraintBottom_toBottomOf="@id/fifth"
+        app:layout_constraintRight_toRightOf="parent" />
+</merge>

@@ -1,41 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/margin_normal"
     tools:context=".main.MainActivity">
 
-    <ImageView
-        android:id="@+id/profile_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_normal">
 
-    <TextView
-        android:id="@+id/profile_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/margin_normal"
-        android:textStyle="bold"
-        tools:text="Some profile" />
+        <com.android.widget.square.SquareMenuSeven
+            android:id="@+id/menu_seven"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.android.widget.square.SquareMenuSix
+            android:id="@+id/menu_six"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:textStyle="bold"
+            tools:text="Some profile" />
 
 
-    <Switch
-        android:id="@+id/mode_switch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/margin_normal" />
+        <Switch
+            android:id="@+id/mode_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_normal" />
 
-    <Button
-        android:id="@+id/remove_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/margin_normal"
-        android:text="remove" />
-</LinearLayout>
+        <Button
+            android:id="@+id/remove_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:text="remove" />
+    </LinearLayout>
+</ScrollView>
